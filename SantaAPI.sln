@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SantaAPI", "SantaAPI\SantaAPI.csproj", "{3A90EBDF-F561-4A86-B6BD-80375CCCCE86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A90EBDF-F561-4A86-B6BD-80375CCCCE86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A90EBDF-F561-4A86-B6BD-80375CCCCE86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A90EBDF-F561-4A86-B6BD-80375CCCCE86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A90EBDF-F561-4A86-B6BD-80375CCCCE86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6FAD765-B057-445E-B97D-7AD5EEEE2109}
+	EndGlobalSection
+EndGlobal
