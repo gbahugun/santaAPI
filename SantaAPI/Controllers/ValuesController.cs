@@ -10,7 +10,6 @@ namespace SantaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     [EnableCors("SantaPolicy")]
     public class ValuesController : ControllerBase
     {

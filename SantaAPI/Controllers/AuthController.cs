@@ -19,7 +19,6 @@ namespace SantaAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("SantaPolicy")]
-    [Authorize]
     public class AuthController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
