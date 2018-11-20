@@ -16,8 +16,6 @@ using SantaAPI.ViewModels;
 
 namespace SantaAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     [EnableCors("SantaPolicy")]
     public class AuthController : Controller
     {
