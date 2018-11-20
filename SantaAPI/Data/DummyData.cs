@@ -12,7 +12,7 @@ namespace SantaAPI.Data
                               UserManager<IdentityUser> userManager,
                               RoleManager<IdentityRole> roleManager)
         {
-            context.Database.EnsureCreated();
+            //context.Database.EnsureCreated();
 
             string password = "P@$$w0rd";
 
