@@ -15,7 +15,7 @@ namespace SantaAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("SantaPolicy")]
-    [Authorize]
+    //[Authorize]
     public class ChildrenController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
