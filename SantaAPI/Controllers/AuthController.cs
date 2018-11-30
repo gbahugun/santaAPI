@@ -41,7 +41,7 @@ namespace SantaAPI.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "Customer");
+                await _userManager.AddToRoleAsync(user, "Child");
             }
             return Ok(new { Username = user.UserName });
         }
