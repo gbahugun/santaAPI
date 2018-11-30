@@ -35,7 +35,7 @@ namespace SantaAPI.Controllers
             var user = new IdentityUser
             {
                 Email = model.Email,
-                UserName = model.Email,
+                UserName = model.Username,
                 SecurityStamp = Guid.NewGuid().ToString()
             };
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -54,8 +54,8 @@ namespace SantaAPI.Controllers
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 var claim = new[] {
-        new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
-      };
+                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
+                };
                 var signinKey = new SymmetricSecurityKey(
                   Encoding.UTF8.GetBytes(_configuration["Jwt:SigningKey"]));
 
