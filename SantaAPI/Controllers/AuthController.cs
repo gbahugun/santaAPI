@@ -21,11 +21,13 @@ namespace SantaAPI.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _configuration;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AuthController(UserManager<IdentityUser> userManager, IConfiguration configuration)
+        public AuthController(UserManager<IdentityUser> userManager, IConfiguration configuration, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _roleManager = roleManager;
         }
 
         [Route("register")]
@@ -51,11 +53,25 @@ namespace SantaAPI.Controllers
         public async Task<ActionResult> Login([FromBody] LoginViewModel model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
+            var userRoles = await _userManager.GetRolesAsync(user);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                var claim = new[] {
+                var claims = new List<Claim> {
                     new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
                 };
+                foreach (var userRole in userRoles)
+                {
+                    claims.Add(new Claim("Role:", userRole));
+                    var role = await _roleManager.FindByNameAsync(userRole);
+                    if (role != null)
+                    {
+                        var roleClaims = await _roleManager.GetClaimsAsync(role);
+                        foreach (Claim roleClaim in roleClaims)
+                        {
+                            claims.Add(roleClaim);
+                        }
+                    }
+                }
                 var signinKey = new SymmetricSecurityKey(
                   Encoding.UTF8.GetBytes(_configuration["Jwt:SigningKey"]));
 
@@ -64,6 +80,7 @@ namespace SantaAPI.Controllers
                 var token = new JwtSecurityToken(
                   issuer: _configuration["Jwt:Site"],
                   audience: _configuration["Jwt:Site"],
+                  claims: claims,
                   expires: DateTime.UtcNow.AddMinutes(expiryInMinutes),
                   signingCredentials: new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256)
                 );

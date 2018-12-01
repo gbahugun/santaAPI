@@ -53,6 +53,7 @@ namespace SantaAPI.Controllers
 
         // PUT: api/Children/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutChild([FromRoute] int id, [FromBody] Child child)
         {
             if (!ModelState.IsValid)
@@ -103,6 +104,7 @@ namespace SantaAPI.Controllers
 
         // DELETE: api/Children/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteChild([FromRoute] int id)
         {
             if (!ModelState.IsValid)
