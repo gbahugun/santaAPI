@@ -94,7 +94,7 @@ namespace SantaAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            child.DateCreated = DateTime.Now;
             _context.Children.Add(child);
             await _context.SaveChangesAsync();
 
