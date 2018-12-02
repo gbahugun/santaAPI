@@ -61,8 +61,8 @@ namespace SantaAPI.Controllers
                 };
                 foreach (var userRole in userRoles)
                 {
-                    claims.Add(new Claim("Role", userRole));
-                    var role = await _roleManager.FindByNameAsync(userRole);
+                    claims.Add(new Claim("role", userRole));
+                    /*var role = await _roleManager.FindByNameAsync(userRole);
                     if (role != null)
                     {
                         var roleClaims = await _roleManager.GetClaimsAsync(role);
@@ -70,7 +70,7 @@ namespace SantaAPI.Controllers
                         {
                             claims.Add(roleClaim);
                         }
-                    }
+                    }*/
                 }
                 var signinKey = new SymmetricSecurityKey(
                   Encoding.UTF8.GetBytes(_configuration["Jwt:SigningKey"]));
